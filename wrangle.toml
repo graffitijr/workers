@@ -1,0 +1,9 @@
+name = "my-worker"
+main = "worker.js"           # <-- your Worker script file
+compatibility_date = "2025-10-04"
+type = "javascript"          # or "webpack" / "modules" if using modules
+
+# Optional: KV namespace binding
+kv_namespaces = [
+  { binding = "PublicContent", id = "YOUR_KV_NAMESPACE_ID" }
+]
