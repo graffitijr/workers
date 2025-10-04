@@ -12,7 +12,7 @@ export default {
             return new Response(null, { status: 204, headers: corsHeaders });
         }
 
-        //handle user posting content
+        //handle user posting contenta
 
         if (url.pathname === "/post-content" && request.method === "POST") {
             let { text } = await request.json();
