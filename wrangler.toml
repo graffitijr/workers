@@ -4,6 +4,12 @@ compatibility_date = "2025-10-04"
 type = "javascript"          # or "webpack" / "modules" if using modules
 
 # Optional: KV namespace binding
-kv_namespaces = [
-  { binding = "PublicContent", id = "YOUR_KV_NAMESPACE_ID" }
-]
+"kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "3512f00ee6994736a2eae736ad6c191a",
+      
+      // Optional: preview_id used when running `wrangler dev` for local dev
+      "preview_id": "<ID_OF_PREVIEW_KV_NAMESPACE_FOR_LOCAL_DEVELOPMENT>"
+    }
+  ]
