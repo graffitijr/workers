@@ -49,7 +49,7 @@ export default {
         }
 
         if (url.pathname === "/clear-content" && request.method === "GET") {
-            env.PublicContent.clear()
+            await env.PublicContent.put("all_posts", "[]");
         }
         return new Response("Not found", { status: 404, headers: corsHeaders });
     }
