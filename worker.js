@@ -12,7 +12,7 @@ export default {
             return new Response(null, { status: 204, headers: corsHeaders });
         }
 
-        //handle user posting contenta
+        //handle user posting content
 
         if (url.pathname === "/post-content" && request.method === "POST") {
             let { text } = await request.json();
@@ -33,7 +33,7 @@ export default {
             return new Response("Posted!", { status: 200, headers: corsHeaders })
         }
 
-        if (url.pathname == "/get-content" && request.method === "GET") {
+        if (url.pathname === "/get-content" && request.method === "GET") {
             const postsListRaw = await env.PublicContent.get("all_posts") || "[]";
             const postsList = JSON.parse(postsListRaw);
 
@@ -46,6 +46,10 @@ export default {
 
             // return all posts as a single string (or JSON if you prefer)
             return new Response(allPosts.join("<br>"), { status: 200, headers: corsHeaders });
+        }
+
+        if (url.pathname === "/clear-content" && request.method === "GET") {
+            env.PublicContent.clear()
         }
         return new Response("Not found", { status: 404, headers: corsHeaders });
     }
