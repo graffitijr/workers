@@ -19,7 +19,7 @@ export default {
       const accountKey = "account_" + username.toLowerCase();
 
       const existing = await env.PublicContent.get(accountKey);
-      if (existing) {
+      if (existing || username === "") {
         return new Response("Username taken", { status: 400, headers: corsHeaders });
       }
 
