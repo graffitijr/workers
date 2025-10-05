@@ -22,6 +22,9 @@ export default {
             if (existing || username === "") {
                 return new Response("Username taken", { status: 400, headers: corsHeaders });
             }
+            if (username.length >= 15) {
+                return new Response("Max 15 characters long", { status: 400, headers: corsHeaders });
+            }
 
             // Save account
             await env.PublicContent.put(accountKey, password);
