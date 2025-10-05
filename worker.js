@@ -33,7 +33,7 @@ export default {
                 let OldAccounts = await env.PublicContent.get("accounts-list");
                 await env.PublicContent.put("accounts-list", OldAccounts.unshift(username));
 
-                return new Response("Account created", {status: 201});
+                return new Response("Account created", {status: 200, headers: corsHeaders});
             }
 
         }
@@ -75,7 +75,7 @@ export default {
 
             let accountsToSend = accounts.filter(accounts => accounts !== username);
 
-            return new Response(accountsToSend, {status: 200});
+            return new Response(accountsToSend, {status: 200, headers: corsHeaders});
         }
 
         // Default response for any other route
