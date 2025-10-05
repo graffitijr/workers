@@ -3,7 +3,8 @@ export default {
     const url = new URL(request.url);
 
     const corsHeaders = {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "https://social-media-app-e0s.pages.dev",
+      "Access-Control-Allow-Credentials": "true",
       "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type"
     };
