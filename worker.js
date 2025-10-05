@@ -89,6 +89,7 @@ export default {
 
         if (url.pathname === "/send-to-global-chat" && request.method === "POST") {
             const username = await getUsernameFromRequest(request);
+            if (!username) return new Response("Not logged in", { status: 401, headers: corsHeaders });
 
             const message = await request.json()
 
@@ -99,6 +100,18 @@ export default {
 
 
             return new Response("sent to global chat successfully", { status: 200, headers: corsHeaders });
+        }
+
+        //handle sending global chat back to user
+
+        if (url.pathname === "/get-global-chat" && request.method === "GET") {
+            const username = await getUsernameFromRequest(request);
+            if (!username) {
+                return new Response("Not logged in", { status: 401, headers: corsHeaders })
+            }
+
+            const chat = await env.PublicContent.get("global-chat") || "[]";
+            return new Response(chat, { status: 200, headers: corsHeaders });
         }
 
         return new Response("Not found", { status: 404, headers: corsHeaders });
