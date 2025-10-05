@@ -54,7 +54,7 @@ export default {
             const token = Math.random().toString(36).substring(2, 15);
 
             // Store token → username mapping
-            await env.KV.put("session_" + token, username);
+            await env.PublicContent.put("session_" + token, username);
 
             // Send cookie to browser
             return new Response("Logged in!", {
