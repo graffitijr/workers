@@ -1,4 +1,4 @@
-name = "my-worker"
+name = "backend-worker"
 main = "worker.js"           # <-- your Worker script file
 compatibility_date = "2025-10-04"
 type = "javascript"          # or "webpack" / "modules" if using modules
