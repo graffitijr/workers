@@ -26,7 +26,6 @@ export default {
             return new Response(null, {status: 204, headers: corsHeaders});
         }
 
-        try {
             if (url.pathname === "/sign-up" && request.method === "POST") {
                 let body = await request.json();
 
@@ -64,12 +63,9 @@ export default {
             }
 
             return new Response("Not found", {status: 404, headers: corsHeaders});
-        } catch (err) {
-            return new Response("Internal server error: " + err.message, {status: 500, headers: corsHeaders});
-        }
 
 
         // Default response for any other route
-        return new Response("Not found", {status: 404, headers: corsHeaders});
+
     }
 };
