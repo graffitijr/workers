@@ -8,7 +8,7 @@ export default {
 
         // Simple CORS headers so your frontend (Pages or other) can call this worker freely.
         const corsHeaders = {
-            "Access-Control-Allow-Origin": "https://your-frontend-domain.com",
+            "Access-Control-Allow-Origin": "https://mobile-safe-social-media.pages.dev",
             "Access-Control-Allow-Credentials": "true",
             "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type"
