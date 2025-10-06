@@ -16,7 +16,7 @@ export default {
         async function GenerateAssignAndReturnToken(account_name){
             let NewToken = Math.random().toString(36).substring(6)
 
-            await env.PublicContent.set(`Token_${NewToken}`, account_name);
+            await env.PublicContent.put(`Token_${NewToken}`, account_name);
 
             return NewToken;
         }
@@ -44,10 +44,10 @@ export default {
                     return new Response("account already exists", {status: 400, headers: corsHeaders});
                 }
 
-                await env.PublicContent.set(`account_${body.name}`, body.password);
+                await env.PublicContent.put(`account_${body.name}`, body.password);
 
                 accounts.unshift(body.name);
-                await env.PublicContent.set("all_accounts", JSON.stringify(accounts));
+                await env.PublicContent.put("all_accounts", JSON.stringify(accounts));
 
                 return new Response("account created", {status: 201, headers: corsHeaders});
             }
