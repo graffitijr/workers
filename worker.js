@@ -8,8 +8,7 @@ export default {
 
         // Simple CORS headers so your frontend (Pages or other) can call this worker freely.
         const corsHeaders = {
-            "Access-Control-Allow-Origin": "https://mobile-safe-social-media.pages.dev",
-            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type"
         };
@@ -40,7 +39,7 @@ export default {
                 return new Response("name too long - max lenght 12", {status: 400, headers: corsHeaders});
             }
             if (body.name.length === 0) {
-                return new Response("cannot create account with no name", {status: 404});
+                return new Response("cannot create account with no name", {status: 404, headers: corsHeaders});
             }
 
             await env.PublicData.set(`account_${body.name}`, body.password)
