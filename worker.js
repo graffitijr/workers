@@ -16,7 +16,7 @@ export default {
         async function GenerateAssignAndReturnToken(account_name){
             let NewToken = Math.random().toString(36).substring(6)
 
-            await env.PublicData.set(`Token_${NewToken}`, account_name);
+            await env.PublicContent.set(`Token_${NewToken}`, account_name);
 
             return NewToken;
         }
@@ -37,17 +37,17 @@ export default {
                     return new Response("name too long - max length 12", {status: 400, headers: corsHeaders});
                 }
 
-                let OldAccounts = await env.PublicData.get("all_accounts");
+                let OldAccounts = await env.PublicContent.get("all_accounts");
                 let accounts = OldAccounts ? JSON.parse(OldAccounts) : [];
 
                 if (accounts.includes(body.name)) {
                     return new Response("account already exists", {status: 400, headers: corsHeaders});
                 }
 
-                await env.PublicData.set(`account_${body.name}`, body.password);
+                await env.PublicContent.set(`account_${body.name}`, body.password);
 
                 accounts.unshift(body.name);
-                await env.PublicData.set("all_accounts", JSON.stringify(accounts));
+                await env.PublicContent.set("all_accounts", JSON.stringify(accounts));
 
                 return new Response("account created", {status: 201, headers: corsHeaders});
             }
@@ -55,7 +55,7 @@ export default {
             if (url.pathname === "/login" && request.method === "POST") {
                 let body = await request.json();
 
-                let CorrectPassword = await env.PublicData.get(`account_${body.name}`);
+                let CorrectPassword = await env.PublicContent.get(`account_${body.name}`);
                 if (CorrectPassword === body.password) {
                     let token = await GenerateAssignAndReturnToken(body.name);
                     return new Response(JSON.stringify({token}), {status: 200, headers: corsHeaders});
